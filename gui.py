@@ -5,8 +5,8 @@ root = Tk()
 
 
 
-myLabel = Label(root, text="Hello World!")
+myLabel1 = Label(root, text="Hello World!")
 
-myLabel.pack()
+myLabel1.grid()
 
 root.mainloop()
