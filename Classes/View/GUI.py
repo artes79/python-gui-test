@@ -1,4 +1,5 @@
 from tkinter import *
+import time
 
 class GUI:
 
@@ -12,4 +13,9 @@ class GUI:
         self.tkRoot.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def draw(self):
-        self.tkRoot.mainloop()
+
+        while self.windowOpen:
+            self.controler.executeOneStep()
+            self.drawElements()
+            self.tkRoot.update()
+            time.sleep(0.017)
