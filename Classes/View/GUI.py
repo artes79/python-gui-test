@@ -15,7 +15,7 @@ class GUI:
         self.tkRoot.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def draw(self):
-
+        self.positionImage()
         while self.windowOpen:
             self.controler.executeOneStep()
             self.drawElements()
@@ -26,4 +26,9 @@ class GUI:
         self.windowOpen = False
 
     def drawElements(self):
-        self.myCanvas
+        self.test = "test"
+
+    def positionImage(self):
+        pilImage = Image.open("icon-192.png")
+        self.image = ImageTk.PhotoImage(pilImage)
+        self.myCanvas.create_image(160, 120, image=self.image, size=None)
