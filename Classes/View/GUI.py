@@ -16,14 +16,15 @@ class GUI:
 
     def draw(self):
         self.positionImage()
+        self.myCanvas.create_image(0, 120, image=self.image, tag="image1")
         while self.windowOpen:
             self.controler.executeOneStep()
             self.drawElements()
-            self.myCanvas.delete("all")
-            if time.time() % 2.0 >= 1:
-                self.myCanvas.create_image(160, 120, image=self.image, size=None)
+            #self.myCanvas.delete("all")
+            coords = self.myCanvas.coords("image1")
+            self.myCanvas.move("image1", 0.1, 0)
             self.tkRoot.update()
-            time.sleep(0.017)
+            time.sleep(0.01)
 
     def on_closing(self):
         self.windowOpen = False

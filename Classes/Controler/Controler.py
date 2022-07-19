@@ -17,6 +17,6 @@ class Controler(object):
     def executeOneStep(self):
         newTime = time.time()
         diffTime = newTime - self.timeLastUpdate
-        print(diffTime)
+        #print(diffTime)
         self.timeLastUpdate = newTime
         self.model.run(diffTime)
