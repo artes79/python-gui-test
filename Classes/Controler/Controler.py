@@ -20,3 +20,4 @@ class Controler(object):
         #print(diffTime)
         self.timeLastUpdate = newTime
         self.model.run(diffTime)
+        print(BaseComponent.generateId("sau"))
