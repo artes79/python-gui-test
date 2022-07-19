@@ -5,9 +5,8 @@ class BaseComponent(object):
 
     lastIdNumber = 0
 
-    def __init__(self, id: str, diameter, images, startPos):
-        self.type = "sau"
-        self.id: str = id
+    def __init__(self, type: str, diameter, images, startPos):
+        self.id: str = BaseComponent.generateId(type)
         self.diameter = diameter
         self.exists = True
         self.onScreen = False
