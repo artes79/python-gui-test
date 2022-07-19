@@ -8,3 +8,11 @@ class Orientation:
     direction: int
     speed: float
 
+@dataclass
+class DrawData:
+    viewType: int
+    orientation: Orientation
+
+#@dataclass
+#class ViewType:
+
