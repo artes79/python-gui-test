@@ -1,4 +1,4 @@
-from Classes.Model import *
+from Classes.Model.BaseComponent import *
 
 
 class NonLiving(BaseComponent):
