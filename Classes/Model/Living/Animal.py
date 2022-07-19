@@ -1,4 +1,4 @@
-from Classes.Model.Animals import *
+from Classes.Model.Living import *
 
 
 class Animal(Living):

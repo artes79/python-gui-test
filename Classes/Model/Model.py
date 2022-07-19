@@ -1,5 +1,5 @@
 from Classes import *
-from Classes.Model.Animals import *
+from Classes.Model.Living import *
 
 
 class Model(object):
