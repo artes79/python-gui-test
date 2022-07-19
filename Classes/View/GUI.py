@@ -19,6 +19,9 @@ class GUI:
         while self.windowOpen:
             self.controler.executeOneStep()
             self.drawElements()
+            self.myCanvas.delete("all")
+            if time.time() % 2.0 >= 1:
+                self.myCanvas.create_image(160, 120, image=self.image, size=None)
             self.tkRoot.update()
             time.sleep(0.017)
 
@@ -31,4 +34,4 @@ class GUI:
     def positionImage(self):
         pilImage = Image.open("icon-192.png")
         self.image = ImageTk.PhotoImage(pilImage)
-        self.myCanvas.create_image(160, 120, image=self.image, size=None)
+
