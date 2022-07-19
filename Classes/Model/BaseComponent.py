@@ -6,6 +6,7 @@ class BaseComponent(object):
     lastIdNumber = 0
 
     def __init__(self, type: str, diameter, images, startPos):
+        self.type: str = type
         self.id: str = BaseComponent.generateId(type)
         self.diameter = diameter
         self.exists = True
