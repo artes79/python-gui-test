@@ -1,10 +1,14 @@
 from dataclasses import dataclass
 
 
+
 @dataclass
-class Orientation:
+class Position:
     xCoord: int
     yCoord: int
+
+@dataclass
+class Orientation:
     direction: int
     speed: float
 
@@ -15,4 +19,8 @@ class DrawData:
 
 #@dataclass
 #class ViewType:
+
+@dataclass
+class Images:
+    allDirections: int
 
