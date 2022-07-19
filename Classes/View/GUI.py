@@ -1,7 +1,9 @@
 from tkinter import *
 import time
+from PIL import Image, ImageTk
 
 class GUI:
+
 
 
     def __init__(self, controler):
@@ -19,3 +21,9 @@ class GUI:
             self.drawElements()
             self.tkRoot.update()
             time.sleep(0.017)
+
+    def on_closing(self):
+        self.windowOpen = False
+
+    def drawElements(self):
+        self.myCanvas
