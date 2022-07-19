@@ -7,3 +7,14 @@ class Animal(Living):
         self.name = name
         self.pos = pos
         self.orientation = orientation
+
+    def calculateDistance(self,  animalArray ):
+        for animal in animalArray:
+            pos = animal.pos
+
+    def inAreaOfAttention(self, pos):
+        return 1.0
+
+    def toString(self):
+        return self.name
+
