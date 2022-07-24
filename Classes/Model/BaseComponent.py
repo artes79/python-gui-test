@@ -1,4 +1,5 @@
 from Classes import *
+from Dataclasses import *
 from Interface import *
 
 
@@ -6,15 +7,13 @@ class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
 
     lastIdNumber = 0
 
-    def __init__(self, type: str, diameter, images, startPos):
-        self.type: str = type
-        self.id: str = BaseComponent.generateId(type)
-        self.diameter = diameter
-        self.exists = True
-        self.onScreen = False
-        self.images: Images = images
-        self.position: Position = startPos
 
+    def __init__(self, positioning: Positioning,
+                 spatialProperties: SpatialProperties):
+        self.id: str = BaseComponent.generateId()
+        self.positioning = positioning
+        self.spatialProperties = spatialProperties
+        self.drawnStatus = EntityStatus.NEW
 
     @staticmethod
     def generateId(type):
