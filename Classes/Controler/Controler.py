@@ -9,7 +9,7 @@ class Controler(object):
         self.timeLastUpdate = time.time()
 
         self.name = name
-        self.model = Model("model")
+        self.model = Model()
 
         self.gui = GUI(self)
         self.gui.draw()
@@ -20,4 +20,7 @@ class Controler(object):
         #print(diffTime)
         self.timeLastUpdate = newTime
         self.model.run(diffTime)
-        print(BaseComponent.generateId("sau"))
+
+    def getEntityImages(self):
+        pass
+
