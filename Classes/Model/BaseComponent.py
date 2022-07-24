@@ -39,6 +39,24 @@ class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
     def executeStep(self):
         pass
 
+    def calculateDistanceTo(self, entity: BaseComponent):
+        d = BaseComponent.distance(
+            self.positioning.x,
+            self.positioning.y,
+            entity.positioning.x,
+            entity.positioning.y
+        )
+        return d - (
+                self.spatialProperties.radius +
+                entity.spatialProperties.radius
+        )
+
+    @staticmethod
+    def distance(x1: float, y1: float, x2: float, y2: float):
+        q1 = pow(abs(y2-y1), 2)
+        q2 = pow(abs(x2-x1), 2)
+        return math.sqrt(q1+q2)
+
     def removeEntity(self):
         self.drawnStatus = EntityStatus.TO_BE_DELETED
 
