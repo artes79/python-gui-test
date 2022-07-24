@@ -1,7 +1,8 @@
 from Classes import *
+from Interface import *
 
 
-class BaseComponent(object):
+class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
 
     lastIdNumber = 0
 
