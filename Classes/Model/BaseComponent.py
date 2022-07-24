@@ -21,6 +21,15 @@ class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
         BaseComponent.lastIdNumber += 1
         return str(BaseComponent.lastIdNumber)
 
+    @staticmethod
+    def calculateNextStep():
+        for entity in BaseComponent.entitySet:
+            if isinstance(entity, IExecutableEntity):
+                entity.executeStep()
+
+    def executeStep(self):
+        pass
+
     def removeEntity(self):
         self.drawnStatus = EntityStatus.TO_BE_DELETED
 
