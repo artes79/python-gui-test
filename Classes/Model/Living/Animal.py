@@ -1,7 +1,7 @@
 from Classes.Model.Living import *
 
 
-class Animal(Living):
+class Animal(Living, IBreeding):
 
     def __init__(self, name, pos, orientation):
         self.name = name
@@ -17,4 +17,9 @@ class Animal(Living):
 
     def toString(self):
         return self.name
+
+    @classmethod
+    def breed(cls):
+        pass
+
 
