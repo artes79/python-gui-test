@@ -4,3 +4,4 @@ from Classes.Model.Living.Animal import *
 from Classes.Model.Living.Predator import *
 from Classes.Model.Living.Herbivore import *
 from Classes.Model.Living.Plant import *
+from Classes.Model.Living.Gress import *
