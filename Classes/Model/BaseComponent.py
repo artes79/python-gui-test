@@ -22,6 +22,10 @@ class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
         return str(BaseComponent.lastIdNumber)
 
     @staticmethod
+    def addToEntitySet(entity):
+        BaseComponent.entitySet.add(entity)
+
+    @staticmethod
     def calculateNextStep():
         for entity in BaseComponent.entitySet:
             if isinstance(entity, IExecutableEntity):
