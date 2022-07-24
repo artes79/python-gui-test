@@ -35,6 +35,18 @@ class GUI:
     def positionImage(self):
         pilImage = Image.open("icon-192.png")
         self.image = ImageTk.PhotoImage(pilImage)
+    def drawEntities(self):
+        for entity in BaseComponent.entitySet:
+            if isinstance(entity, IDrawableEntity):
+                if entity.drawnStatus is EntityStatus.NEW:
+                    self.addEntityToCanvas(entity)
+                elif entity.drawnStatus is EntityStatus.DRAWN:
+                    self.moveEntityOnCanvas(entity)
+                elif entity.drawnStatus is EntityStatus.TO_BE_DELETED:
+                    self.removeEntityFromCanvas(entity)
+                else:
+                    pass
+
     def removeEntityFromCanvas(self, entity):
         self.myCanvas.delete(entity.id)
 
