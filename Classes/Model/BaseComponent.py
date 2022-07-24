@@ -1,6 +1,7 @@
 from Classes import *
 from Dataclasses import *
 from Interface import *
+from Enums import *
 
 
 class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
@@ -8,6 +9,10 @@ class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
     entitySet = set()
     lastIdNumber: int = 0
 
+    id: str
+    drawnStatus: EntityStatus
+    positioning: Positioning
+    spatialProperties: SpatialProperties
 
     def __init__(self, positioning: Positioning,
                  spatialProperties: SpatialProperties):
