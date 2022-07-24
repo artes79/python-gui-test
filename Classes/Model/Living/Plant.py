@@ -1,7 +1,7 @@
 from Classes.Model.Living import *
 
 
-class Plant(NonMovable):
+class Plant(Living):
 
     def __init__(self):
-        self.name = "Plant"
+        pass
