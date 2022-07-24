@@ -32,5 +32,5 @@ class Rock(NonLiving):
                 if minDistance > d:
                     minDistance = d
         m = min(minDistance, 15)
-        return randint(500, 100*(m+5)+1) / 100
+        return randint(500, int(100*(m+5)+1)) / 100
 
