@@ -1,5 +1,5 @@
 from Classes.Model.BaseComponent import *
-
+from Interface import *
 
 class NonLiving(BaseComponent, IImmortal):
 
