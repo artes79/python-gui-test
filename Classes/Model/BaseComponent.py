@@ -1,7 +1,9 @@
+from __future__ import annotations
 from Classes import *
 from Dataclasses import *
 from Interface import *
 from Enums import *
+import math
 
 
 class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
@@ -60,3 +62,5 @@ class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
     def removeEntity(self):
         self.drawnStatus = EntityStatus.TO_BE_DELETED
 
+    def toString(self):
+        pass
