@@ -1,12 +1,12 @@
 from Classes.Model.BaseComponent import *
-import time
 
 
-class Living(BaseComponent):
+class Living(BaseComponent, IMortal, IComputeAndEvolvEntity):
 
-    def __init__(self):
-        self.birth = time.time()
+    lifeCycle: ITypeLifeCycleStages = ITypeLifeCycleStages(10, 20)
+
+    def __init__(self, type, diameter, images, startPos):
+        BaseComponent.__init__(type, diameter, images, startPos)
 
 
-    def GetAge(self):
-        return time.time() - self.birth
+
