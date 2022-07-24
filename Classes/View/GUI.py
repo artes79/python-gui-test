@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 class GUI:
 
 
+    images = []
 
     def __init__(self, controler):
         self.controler = controler
@@ -33,8 +34,15 @@ class GUI:
         self.test = "test"
 
     def positionImage(self):
-        pilImage = Image.open("icon-192.png")
-        self.image = ImageTk.PhotoImage(pilImage)
+        pilImage = Image.open("images/rock.png")
+        image = ImageTk.PhotoImage(pilImage)
+        self.images.append(image)
+
+    def getImage(self, entity):
+        name = type(entity).__name__
+        i = AllEntitiesType[name].value
+        return self.images[i]
+
     def drawEntities(self):
         for entity in BaseComponent.entitySet:
             if isinstance(entity, IDrawableEntity):
