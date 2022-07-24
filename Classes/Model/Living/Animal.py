@@ -1,7 +1,8 @@
 from Classes.Model.Living import *
+from Interface import *
 
 
-class Animal(Living, IBreeding):
+class Animal(Living, IBreeding, IMoving, IEat):
 
     def __init__(self, name, pos, orientation):
         self.name = name
@@ -17,6 +18,12 @@ class Animal(Living, IBreeding):
 
     def toString(self):
         return self.name
+
+    def eating(self, duration):
+        pass
+
+    def moving(self, duration, speed: MovingSpeed):
+        pass
 
     @classmethod
     def breed(cls):
