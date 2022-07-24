@@ -5,6 +5,7 @@ from Interface import *
 
 class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
 
+    entitySet = set()
     lastIdNumber: int = 0
 
 
@@ -19,4 +20,7 @@ class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
     def generateId():
         BaseComponent.lastIdNumber += 1
         return str(BaseComponent.lastIdNumber)
+
+    def removeEntity(self):
+        self.drawnStatus = EntityStatus.TO_BE_DELETED
 
