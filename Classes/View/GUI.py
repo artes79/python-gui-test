@@ -35,6 +35,14 @@ class GUI:
     def positionImage(self):
         pilImage = Image.open("icon-192.png")
         self.image = ImageTk.PhotoImage(pilImage)
+    def removeEntityFromCanvas(self, entity):
+        self.myCanvas.delete(entity.id)
+
+    def moveEntityOnCanvas(self, entity):
+        self.myCanvas.moveto(entity.id,
+                             entity.positioning.getX_asInt(),
+                             entity.positioning.getY_asInt())
+
     def addEntityToCanvas(self, entity):
         self.myCanvas.create_image(entity.positioning.getX_asInt(),
                                    entity.positioning.getY_asInt(),
