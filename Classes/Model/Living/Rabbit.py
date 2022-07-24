@@ -4,8 +4,9 @@ from random import random
 
 class Rabbit(Herbivore, IBreedable):
 
-    def __init__(self):
-        Herbivore.__init__()
+    def __init__(self, positioning: Positioning,
+                 spatialProperties: SpatialProperties):
+        super().__init__(positioning, spatialProperties)
 
     @classmethod
     def breed(cls):
