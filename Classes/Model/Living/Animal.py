@@ -2,7 +2,7 @@ from Classes.Model.Living import *
 from Interface import *
 
 
-class Animal(Living, IBreeding, IMoving, IEat):
+class Animal(Living, IBreeding, IMoving, IEat, IAwareness):
 
     def __init__(self, name, pos, orientation):
         self.name = name
@@ -17,6 +17,10 @@ class Animal(Living, IBreeding, IMoving, IEat):
 
     def moving(self, duration, speed: MovingSpeed):
         pass
+
+    def inView(self) -> [BaseComponent]:
+        x: BaseComponent = self
+        return [x]
 
     @classmethod
     def breed(cls):

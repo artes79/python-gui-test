@@ -13,4 +13,4 @@ from Interface.ISpatialProperties import *
 from Interface.IMoving import *
 from Interface.IEat import *
 from Interface.IEnergy import *
-
+from Interface.IAwareness import *
