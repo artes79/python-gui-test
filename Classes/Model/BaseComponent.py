@@ -5,7 +5,7 @@ from Interface import *
 
 class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
 
-    lastIdNumber = 0
+    lastIdNumber: int = 0
 
 
     def __init__(self, positioning: Positioning,
@@ -16,7 +16,7 @@ class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
         self.drawnStatus = EntityStatus.NEW
 
     @staticmethod
-    def generateId(type):
+    def generateId():
         BaseComponent.lastIdNumber += 1
-        id = type + str(BaseComponent.lastIdNumber)
-        return id
+        return str(BaseComponent.lastIdNumber)
+
