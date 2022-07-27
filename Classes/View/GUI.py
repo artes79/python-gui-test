@@ -5,22 +5,26 @@ from Classes import *
 from Classes.Model import *
 from Interface import *
 from Enums import *
+import copy
 
 
 class GUI:
 
     images = []
 
-    def __init__(self, controler):
+    def __init__(self, controler, imageData: dict):
         self.controler = controler
+        self.createGUI()
+        self.loadImages(imageData)
+        self.windowOpen = True
+
+    def createGUI(self):
         self.tkRoot = Tk()
         self.myCanvas = Canvas(self.tkRoot, bg="green", height=480, width=640)
         self.myCanvas.pack()
-        self.windowOpen = True
         self.tkRoot.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def draw(self):
-        self.positionImage()
         while self.windowOpen:
             self.controler.executeOneStep()
             self.drawEntities()
@@ -30,6 +34,15 @@ class GUI:
     def on_closing(self):
         self.windowOpen = False
 
+    def loadImages(self, imageData: dict):
+        for key, value  in imageData.items():
+            pilImage = Image.open(value["normal"]["image_path"])
+            image = ImageTk.PhotoImage(pilImage)
+            value["normal"]["image"] = image
+            #self.images.append(image)
+            print(imageData[key])
+        self.imageData = imageData
+
     def positionImage(self):
         pilImage = Image.open("images/rock.png")
         image = ImageTk.PhotoImage(pilImage)
@@ -37,8 +50,9 @@ class GUI:
 
     def getImage(self, entity):
         name = type(entity).__name__
-        i = AllEntitiesType[name].value
-        return self.images[i]
+        #i = AllEntitiesType[name].value
+        print(name)
+        return self.imageData[name]["normal"]["image"]
 
     def drawEntities(self):
         for entity in BaseComponent.entitySet:
@@ -54,6 +68,8 @@ class GUI:
 
     def removeEntityFromCanvas(self, entity):
         self.myCanvas.delete(entity.id)
+        print("entity deleted")
+        entity.drawnStatus = EntityStatus.REMOVED_FROM_CANVAS
 
     def moveEntityOnCanvas(self, entity):
         self.myCanvas.moveto(entity.id,
