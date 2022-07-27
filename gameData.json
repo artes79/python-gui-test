@@ -1,0 +1,35 @@
+{
+  "Rock": {
+    "normal": {
+      "image_path": "images/rock.png",
+      "image": ""
+    },
+    "init_count": 100,
+    "propertys": {
+      "Positioning": {
+        "x": "rand",
+        "y": "rand",
+        "orientation": "rand"
+      }
+    }
+  },
+  "Gress": {
+    "normal": {
+      "image_path": "images/grass.png",
+      "image": ""
+    },
+    "init_count": 200,
+    "propertys": {
+      "Positioning": {
+        "x": "rand",
+        "y": "rand",
+        "orientation": "rand"
+      },
+      "SpatialProperties": {
+        "radius": "rand",
+        "height": "rand",
+        "birth": "0"
+      }
+    }
+  }
+}
