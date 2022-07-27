@@ -1,7 +1,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from Interface import *
-from Dataclasses import *
+from DataStorageClasses.TypeLifeCycleStages import *
 from Enums import *
 import time
 
