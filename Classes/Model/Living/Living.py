@@ -5,7 +5,7 @@ from Interface import *
 
 class Living(BaseComponent, IMortal, IComputeAndEvolvEntity):
 
-    lifeCycle: ITypeLifeCycleStages = ITypeLifeCycleStages(10, 20)
+    lifeCycle: TypeLifeCycleStages = TypeLifeCycleStages()
 
     def __init__(self, positioning: Positioning,
                  spatialProperties: SpatialProperties):

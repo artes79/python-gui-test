@@ -8,9 +8,9 @@ class TypeLifeCycleStages(ITypeLifeCycleStages):
     isAdultAt: float
     isElderlyAt: float
 
-    def __init__(self, isAdultAt: float, isElderlyAt: float):
-        self.isAdultAt = isAdultAt
-        self.isElderlyAt = isElderlyAt
+    def __init__(self):
+        self.isAdultAt = 0
+        self.isElderlyAt = 0
 
     @staticmethod
     def getEndOfLifeCycle() -> float:
