@@ -5,6 +5,8 @@ from random import randint
 
 class Rock(NonLiving):
 
+    def __int__(self, argList: list):
+        pass
     def __init__(self, positioning: Positioning):
 
         spatial = SpatialProperties
@@ -24,7 +26,7 @@ class Rock(NonLiving):
                 d = self.calculateDistanceTo(entity)
                 print("dist: " + str(d))
                 if d <= 0:
-                    self.remove()
+                    self.removeEntity()
                     return 0
                 if not haveDoneFirstEntity:
                     minDistance = d
