@@ -1,7 +1,10 @@
+from __future__ import annotations
 from dataclasses import dataclass
 from Interface import *
+from Dataclasses import *
 from Enums import *
 import time
+
 
 @dataclass
 class SpatialProperties(ISpatialProperties):
@@ -9,8 +12,15 @@ class SpatialProperties(ISpatialProperties):
     radius: float
     height: float
     birth: float
+    lifeCycle: TypeLifeCycleStages
 
-    def __init__(self, owner):
+    def __init__(self):
+        self.radius = 0.0
+        self.height = 0.0
+        self.birth = 0.0
+        self.lifeCycle = TypeLifeCycleStages()
+
+    def setLifeCycle(self, owner):
         if isinstance(owner, IMortal):
             t = type(owner)
             self.lifeCycle = t.lifeCycle
