@@ -1,6 +1,6 @@
 from __future__ import annotations
 from Classes import *
-from Dataclasses import *
+from DataStorageClasses import *
 from Interface import *
 from Enums import *
 import math

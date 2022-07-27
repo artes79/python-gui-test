@@ -1,5 +1,5 @@
 from Classes.Model.NonLiving import *
-from Dataclasses import *
+from DataStorageClasses import *
 from random import randint
 
 

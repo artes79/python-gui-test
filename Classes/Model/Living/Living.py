@@ -1,5 +1,5 @@
 from Classes.Model.BaseComponent import *
-from Dataclasses import *
+from DataStorageClasses import *
 from Interface import *
 
 
