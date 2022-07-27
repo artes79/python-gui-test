@@ -12,7 +12,9 @@ class Positioning(IPositioning):
     orientation: float
 
     def __init__(self):
-        pass
+        self.x = 0.0
+        self.y = 0.0
+        self.orientation = 0.0
 
     def getX_asInt(self):
         return round(self.x)
