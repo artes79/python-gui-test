@@ -1,15 +1,17 @@
 from Classes import *
 from Classes.Model.Living import *
 from Classes.Model import *
+from DataStorageClasses import *
 from random import randint
 
 
 class Model(object):
 
-    entityTypes = {
-        "Rock": Rock,
-        "Gress": Gress
+    gameBoard = {
+        "width": 640,
+        "height": 480,
     }
+
 
     def __init__(self, typeData: dict):
         self.propagateEntities(typeData)
@@ -26,13 +28,15 @@ class Model(object):
                     pt = eval(property)
                     print(pt)
                     p = pt()
-                    for attrIndex in tData["propertys"][property]:
+                    for key, value in tData["propertys"][property].items():
                         setattr(p,
-                                tData["propertys"][property][attrIndex],
-                                float(randint(1,400)))
+                                key,
+                                self.convertValue(value))
+                        print(key + " " + value)
                     argList.append(p)
                 print(argList)
                 inst = t(argList)
+                t.addToEntitySet(inst)
         #
         # for _ in range(100):
         #     for typeStr in self.entityTypes:
@@ -47,8 +51,16 @@ class Model(object):
         #         #inst.toString()
         #         #t.addToEntitySet(inst)
 
+    def convertValue(self, value: str):
 
-
+        if value is "randScreen":
+            return 60
+        return 50
 
     def run(self, timeSpan):
-        self.test = "test"
+        pass
+
+
+    @staticmethod
+    def setGameBoardSize(width: int, height: int):
+        pass
