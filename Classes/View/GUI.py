@@ -51,7 +51,7 @@ class GUI:
     def getImage(self, entity):
         name = type(entity).__name__
         #i = AllEntitiesType[name].value
-        print(name)
+        print("getImage " + name)
         return self.imageData[name]["normal"]["image"]
 
     def drawEntities(self):
@@ -68,7 +68,6 @@ class GUI:
 
     def removeEntityFromCanvas(self, entity):
         self.myCanvas.delete(entity.id)
-        print("entity deleted")
         entity.drawnStatus = EntityStatus.REMOVED_FROM_CANVAS
 
     def moveEntityOnCanvas(self, entity):
