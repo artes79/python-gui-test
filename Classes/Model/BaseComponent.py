@@ -11,6 +11,11 @@ class BaseComponent(ISpatial, IExecutableEntity, IDrawableEntity, ICommunity):
     entitySet = set()
     lastIdNumber: int = 0
 
+    gameBoard = {
+        "width": 640,
+        "height": 480,
+    }
+
     id: str
     drawnStatus: EntityStatus
     positioning: Positioning
