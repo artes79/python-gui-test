@@ -4,7 +4,7 @@ from Interface import *
 import math
 
 
-@dataclass()
+@dataclass
 class Positioning(IPositioning):
 
     x: float
