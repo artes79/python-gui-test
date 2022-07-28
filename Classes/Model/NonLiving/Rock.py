@@ -5,15 +5,13 @@ from random import randint
 
 class Rock(NonLiving):
 
-    def __int__(self, argList: list):
-        pass
-    def __init__(self, positioning: Positioning):
+    def __init__(self, args: list):
 
         spatial = SpatialProperties
         spatial.radius = 0.6
         spatial.height = 1
 
-        super().__init__(positioning, spatial)
+        super().__init__(args[0], spatial)
 
         self.spatialProperties.radius = self.calculateDiameter()
         print("r: " + str(self.spatialProperties.radius))
