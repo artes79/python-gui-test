@@ -1,5 +1,5 @@
 
-from Classes.Model.Model import *
+#from Classes.Model.Model import *
 
 from Classes.View.CanvasResizable import *
 from Interface.IDrawableEntity import *

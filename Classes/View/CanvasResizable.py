@@ -18,6 +18,6 @@ class CanvasResizable(Canvas):
         self.width = event.width
         self.height = event.height
         self.config(width=self.width, height=self.height)
-        Controler.setGameBoardSize(self.width, self.height)
+        #Controler.setGameBoardSize(self.width, self.height)
 
 
