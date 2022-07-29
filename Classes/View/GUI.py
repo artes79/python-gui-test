@@ -1,32 +1,34 @@
+
+from Classes.Model.Model import *
+
+from Classes.View.CanvasResizable import *
+from Interface.IDrawableEntity import *
+from Enums import *
 from tkinter import *
 import time
 from PIL import Image, ImageTk
-from Classes import *
-from Classes.Model import *
-from Interface import *
-from Enums import *
-import copy
 
 
 class GUI:
 
     images = []
 
-    def __init__(self, controler, imageData: dict):
-        self.controler = controler
+    def __init__(self, imageData: dict):
         self.createGUI()
         self.loadImages(imageData)
         self.windowOpen = True
 
     def createGUI(self):
         self.tkRoot = Tk()
-        self.myCanvas = Canvas(self.tkRoot, bg="green", height=480, width=640)
-        self.myCanvas.pack()
+        self.myframe = Frame(self.tkRoot)
+        self.myframe.pack(fill=BOTH, expand=YES)
+        self.myCanvas = CanvasResizable(self.myframe, width=640, height=480, bg="#f5deb3", highlightthickness=0)
+        self.myCanvas.pack(fill=BOTH, expand=YES)
         self.tkRoot.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def draw(self):
         while self.windowOpen:
-            self.controler.executeOneStep()
+            #self.controler.executeOneStep()
             self.drawEntities()
             self.tkRoot.update()
             time.sleep(0.01)
@@ -35,7 +37,7 @@ class GUI:
         self.windowOpen = False
 
     def loadImages(self, imageData: dict):
-        for key, value  in imageData.items():
+        for key, value in imageData.items():
             pilImage = Image.open(value["normal"]["image_path"])
             image = ImageTk.PhotoImage(pilImage)
             value["normal"]["image"] = image
@@ -82,4 +84,7 @@ class GUI:
                                    tag=entity.id)
         entity.drawnStatus = EntityStatus.DRAWN
 
+    @staticmethod
+    def print():
+        print("Hei")
 
