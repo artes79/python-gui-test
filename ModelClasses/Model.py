@@ -1,3 +1,4 @@
+from ModelClasses.IModel import IModel
 
 
 class Model(IModel):
