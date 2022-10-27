@@ -3,5 +3,5 @@
 class IController:
 
     @staticmethod
-    def startGame():
+    def startGame() -> None:
         pass
