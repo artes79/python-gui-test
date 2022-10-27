@@ -1,7 +1,9 @@
 from ControllerClasses.IController import IController
+from ViewClasses.View import View
 
 
 class Controller(IController):
 
-    def startGame(self):
-        pass
+    @staticmethod
+    def startGame():
+        View.startGameView()
