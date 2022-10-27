@@ -1,10 +1,23 @@
+from ViewClasses.DataLayer import DataLayer
+from ViewClasses.GameBoard import GameBoard
 from ViewClasses.IView import IView
-
+import tkinter as gui
 
 class View(IView):
 
-    def p(self):
-        pass
+    rootGUI: gui.Tk
+    mainView: gui.Frame
+    gameBoardLayer: gui.Canvas
+    dataLayersLayer: gui.Frame
+    gameRunning: bool
+
+    @staticmethod
+    def startGameView():
+        View.initGUI()
+        GameBoard.initBoard(View.gameBoardLayer)
+        DataLayer.initLayer(View.gameBoardLayer)
+        View.runGUI()
+
 
     @staticmethod
     def initGUI():
