@@ -15,3 +15,19 @@ class View(IView):
         View.gameBoardLayer = gui.Canvas(View.mainView, width=640, height=480, bg="#f5deb3", highlightthickness=0)
         View.gameBoardLayer.pack(fill=gui.BOTH, expand=gui.YES)
         View.gameRunning = True
+
+    @staticmethod
+    def runGUI():
+        while View.gameRunning:
+            GameBoard.run()
+            DataLayer.run()
+            View.arangeLayers()
+            View.rootGUI.update()
+
+    @staticmethod
+    def arangeLayers():
+        pass
+
+    @staticmethod
+    def onClosing():
+        View.gameRunning = False
