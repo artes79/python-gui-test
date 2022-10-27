@@ -3,5 +3,5 @@
 class IModel:
 
     @staticmethod
-    def prepareForPlay():
+    def StartGame():
         pass
