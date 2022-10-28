@@ -1,0 +1,4 @@
+
+
+class IBreedable:
+    pass
