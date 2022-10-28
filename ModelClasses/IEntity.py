@@ -1,10 +1,12 @@
+from DataClasses.IPositioning import IPositioning
 
 
 class IEntity:
 
-    id: int
-
-    @staticmethod
-    def generateId(inst):
+    @property
+    def position(self) -> IPositioning:
         pass
-    
+
+
+
+
