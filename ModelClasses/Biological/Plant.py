@@ -5,5 +5,5 @@ from ModelClasses.Biological.IPlant import IPlant
 class Plant(BaseEntity, IPlant):
 
     def __init__(self):
-        super.__init__()
+        super().__init__()
 

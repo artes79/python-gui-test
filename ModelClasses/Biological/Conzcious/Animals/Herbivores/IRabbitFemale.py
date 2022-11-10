@@ -1,6 +1,6 @@
 from ModelClasses.Biological.Conzcious.Animals.Herbivores.IRabbit import IRabbit
-from ModelClasses.IBreedable import IBreedable
+#from ModelClasses.IBreedable import IBreedable
 
 
-class IRabbitFemale(IRabbit, IBreedable):
+class IRabbitFemale(IRabbit): #, IBreedable):
     pass

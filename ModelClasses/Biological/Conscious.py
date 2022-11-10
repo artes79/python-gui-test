@@ -5,5 +5,5 @@ from ModelClasses.Biological.IConscious import IConscious
 class Conscious(BaseEntity, IConscious):
 
     def __init__(self):
-        super.__init__()
+        super().__init__()
 

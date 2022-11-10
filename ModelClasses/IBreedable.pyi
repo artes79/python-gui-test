@@ -1,4 +1,6 @@
 
 
 class IBreedable:
-    pass
+
+    def breed(self) -> None:
+        pass

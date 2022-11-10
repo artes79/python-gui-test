@@ -5,5 +5,5 @@ from ModelClasses.Biological.Conzcious.Animals.IPredator import IPredator
 class Predator(Animal, IPredator):
 
     def __init__(self):
-        super.__init__()
+        super().__init__()
 

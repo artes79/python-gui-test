@@ -5,5 +5,5 @@ from ModelClasses.Biological.Conzcious.IAnimal import IAnimal
 class Animal(Conscious, IAnimal):
 
     def __init__(self):
-        super.__init__()
+        super().__init__()
 

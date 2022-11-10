@@ -5,5 +5,5 @@ from ModelClasses.Biological.Conzcious.Animals.IHerbivore import IHerbivore
 class Herbivore(Animal, IHerbivore):
 
     def __init__(self):
-        super.__init__()
+        super().__init__()
 

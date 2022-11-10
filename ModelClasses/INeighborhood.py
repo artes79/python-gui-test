@@ -1,19 +1,10 @@
-from ModelClasses.IEntity import IEntity
+from DataClasses.IPositioning import IPositioningUser
 
 
 class INeighborhood:
 
     @staticmethod
-    def hasMoved(entities: IEntity) -> list[type[IEntity]]:
+    def hasMoved(entities: IPositioningUser) -> list[type[IPositioningUser]]:
         pass
 
 
-class INeighborhoodUser:
-
-    @property
-    def neighborhoodSquar(self) -> (int, int):
-        pass
-
-    @neighborhoodSquar.setter
-    def neighborhoodSquar(self, value: (int, int)) -> None:
-        pass
