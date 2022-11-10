@@ -61,3 +61,12 @@ class Positioning(IPositioning):
 
         Positioning._worldWidth = width
         Positioning._worldHeight = height
+
+    def __init__(self, x: int, y: int,
+                 boundingBox: (int, int),
+                 movable: bool = True):
+        self._coord = np.array([x, y], dtype=float)
+        self._boundingBoxWidth = boundingBox[0]
+        self._boundingBoxHeight = boundingBox[1]
+        self._movable = movable
+        self._orientation = random.randint(0, 359)
