@@ -150,3 +150,10 @@ class Positioning(IPositioning):
             overlap = self.closeBy(entities, 7)
             if len(overlap) == 0:
                 findCoords = False
+
+    def coordIsOccupaid(self, coord: np.array, entities: list[type[IEntity]], radius: float) -> bool:
+        for entity in entities:
+            distance = self.distanceBetween(coord, entity.position)
+            if distance < radius:
+                return True
+        return False
