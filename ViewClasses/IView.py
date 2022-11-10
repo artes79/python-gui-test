@@ -1,3 +1,4 @@
+from ModelClasses.IEntity import IEntity
 
 
 class IView:
@@ -12,7 +13,7 @@ class IView:
         pass
 
     @staticmethod
-    def runGUI() -> None:
+    def runGUI(entities: list[type[IEntity]]) -> (int, int):
         pass
 
     @staticmethod
