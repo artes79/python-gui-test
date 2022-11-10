@@ -72,6 +72,16 @@ class Positioning(IPositioning):
         self._orientation = random.randint(0, 359)
 
 
+    def closestTo(self, entities: list[type[IEntity]]) -> IEntity:
+        closestEntity: IEntity = entities[0]
+        closestDistance: float = self._worldWidth + self._worldHeight
+        for entity in entities:
+            distance = self.distanceTo(entity.position)
+            if closestDistance > distance:
+                closestDistance = distance
+                closestEntity = entity
+        return closestEntity
+
     def closeBy(self, entities: list[type[IEntity]], radius: float) -> list[type[IEntity]]:
         closeBy = []
         for entity in entities:
