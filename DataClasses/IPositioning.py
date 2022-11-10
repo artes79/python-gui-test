@@ -1,9 +1,19 @@
 from __future__ import annotations
+from dataclasses import dataclass
 import numpy as np
-from ModelClasses.IEntity import IEntity
-from ModelClasses.INeighborhood import INeighborhoodUser
 
 
+class INeighborhoodUser:
+
+    @property
+    def neighborhoodSquar(self) -> (int, int):
+        pass
+
+    @neighborhoodSquar.setter
+    def neighborhoodSquar(self, value: (int, int)) -> None:
+        pass
+
+@dataclass
 class IPositioning(INeighborhoodUser):
 
     @property
@@ -11,7 +21,7 @@ class IPositioning(INeighborhoodUser):
         pass
 
     @property
-    def xAsInt(self) -> float:
+    def xAsInt(self) -> int:
         pass
 
     @property
@@ -26,14 +36,26 @@ class IPositioning(INeighborhoodUser):
     def orientation(self) -> float:
         pass
 
-    def moveInDirection(self, direction: np.ndarray, duration: float, speed: float, maxDistance: float) -> None:
+    def moveInDirection(self, direction: float, duration: float, speed: float, maxDistance: float) -> None:
         pass
 
     def distanceTo(self, entity: IPositioning) -> float:
         pass
 
-    def closeBy(self, entities: list[type[IEntity]], distance: float) -> list[type[IEntity]]:
+    def closeBy(self, entities: list[type[IPositioningUser]], distance: float) -> list[type[IPositioningUser]]:  #list[type[IEntity]]
         pass
+
+    def changeWorldBorder(self, width: int, height: int) -> None:
+        pass
+
+
+class IPositioningUser:
+
+    @property
+    def position(self) -> IPositioning:
+        pass
+
+
 
 
 

@@ -114,6 +114,8 @@ class Positioning(IPositioning):
         return (distance, direction)
 
 
+
+
     def distanceTo(self, entityPos: IPositioning) -> float:
         return np.linalg.norm(self._coord - entityPos.coord)
 
@@ -179,3 +181,9 @@ class Positioning(IPositioning):
             newCoord = freeCoord[mostNIndex];
             self._coord[0] = newCoord[0]
             self._coord[1] = newCoord[1]
+
+
+
+
+
+
