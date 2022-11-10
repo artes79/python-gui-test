@@ -71,6 +71,23 @@ class Positioning(IPositioning):
         self._movable = movable
         self._orientation = random.randint(0, 359)
 
+    def moveInDirection(self, direction: float, duration: float, speed: float, maxDistance: float) -> None:
+        if self._movable:
+
+            distanceBorder, direction = self.closestBorderDistance();
+
+            direction = (direction / np.abs(direction)) / 10
+
+            self._orientation = (self._orientation + direction) % 360
+
+            speed = min(abs(distanceBorder/3), speed)
+            distance = duration * speed;
+            distanceX = distance * np.cos(self._orientation);
+            distanceY = distance * np.sin(self._orientation);
+            if distance >= distanceBorder:
+                distance = distanceBorder * 0.9
+            self._coord[0] += distanceX
+            self._coord[1] += distanceY
 
     def closestBorderDistance(self) -> (float, float):
         distanceTopBorder = self._coord[1] - self._boundingBoxHeight / 2
