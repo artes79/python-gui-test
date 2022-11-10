@@ -70,3 +70,7 @@ class Positioning(IPositioning):
         self._boundingBoxHeight = boundingBox[1]
         self._movable = movable
         self._orientation = random.randint(0, 359)
+
+    def worldSizeHasChange(self) -> None:
+        self._coord[0] += Positioning._lastWidthDiff / 2
+        self._coord[1] += Positioning._lastHeightDiff / 2
