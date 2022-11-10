@@ -113,6 +113,13 @@ class Positioning(IPositioning):
 
         return (distance, direction)
 
+
+    def distanceTo(self, entityPos: IPositioning) -> float:
+        return np.linalg.norm(self._coord - entityPos.coord)
+
+    def distanceBetween(self, coord: np.ndarray, entityPos: IPositioning) -> float:
+        return np.linalg.norm(coord - entityPos.coord)
+
     def closestTo(self, entities: list[type[IEntity]]) -> IEntity:
         closestEntity: IEntity = entities[0]
         closestDistance: float = self._worldWidth + self._worldHeight
