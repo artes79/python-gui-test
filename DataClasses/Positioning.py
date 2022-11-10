@@ -71,6 +71,15 @@ class Positioning(IPositioning):
         self._movable = movable
         self._orientation = random.randint(0, 359)
 
+
+    def closeBy(self, entities: list[type[IEntity]], radius: float) -> list[type[IEntity]]:
+        closeBy = []
+        for entity in entities:
+            distance = self.distanceTo(entity.position)
+            if distance < radius:
+                closeBy.append(entity)
+        return closeBy
+
     def worldSizeHasChange(self) -> None:
         self._coord[0] += Positioning._lastWidthDiff / 2
         self._coord[1] += Positioning._lastHeightDiff / 2
