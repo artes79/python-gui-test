@@ -72,6 +72,30 @@ class Positioning(IPositioning):
         self._orientation = random.randint(0, 359)
 
 
+    def closestBorderDistance(self) -> (float, float):
+        distanceTopBorder = self._coord[1] - self._boundingBoxHeight / 2
+        distanceBottomBorder = self._worldHeight - self._coord[1] - self._boundingBoxHeight / 2
+        distanceLeftBorder = self._coord[0] - self._boundingBoxWidth / 2
+        distanceRightBorder = self._worldWidth - self._coord[0] - self._boundingBoxWidth / 2
+
+        direction = (0 - self._orientation) % 360
+        distance = distanceTopBorder
+
+        if distanceRightBorder < distance:
+            direction = (90 - self._orientation) % 360
+            distance = distanceRightBorder
+        if distanceBottomBorder < distance:
+            direction = (180 - self._orientation) % 360
+            distance = distanceBottomBorder
+        if distanceLeftBorder < distance:
+            direction = (270 - self._orientation) % 360
+            distance = distanceLeftBorder
+
+        if direction > 180:
+            direction -= 360
+
+        return (distance, direction)
+
     def closestTo(self, entities: list[type[IEntity]]) -> IEntity:
         closestEntity: IEntity = entities[0]
         closestDistance: float = self._worldWidth + self._worldHeight
