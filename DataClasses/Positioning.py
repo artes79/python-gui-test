@@ -74,3 +74,12 @@ class Positioning(IPositioning):
     def worldSizeHasChange(self) -> None:
         self._coord[0] += Positioning._lastWidthDiff / 2
         self._coord[1] += Positioning._lastHeightDiff / 2
+
+    def setRandomPosition(self, step: int, entities: list[type[IEntity]] = []) -> None:
+        findCoords = True
+        while findCoords:
+            self._coord[0] = float(random.randrange(0, Positioning._worldWidth, step))
+            self._coord[1] = float(random.randrange(0, Positioning._worldHeight, step))
+            overlap = self.closeBy(entities, 7)
+            if len(overlap) == 0:
+                findCoords = False
