@@ -53,3 +53,11 @@ class Positioning(IPositioning):
     @property
     def orientation(self) -> float:
         return self._orientation
+
+    @staticmethod
+    def setWorldSize(width: int, height: int):
+        Positioning._lastWidthDiff = width - Positioning._worldWidth
+        Positioning._lastHeightDiff = height - Positioning._worldHeight
+
+        Positioning._worldWidth = width
+        Positioning._worldHeight = height
