@@ -157,3 +157,25 @@ class Positioning(IPositioning):
             if distance < radius:
                 return True
         return False
+
+    def placeCloseTo(self, entity: IEntity, entieties: list[type[IEntity]]) -> None:
+        freeCoord = []
+        numNabours = []
+
+        for x, y in [(15, 0), (15, 15), (0, 15), (-15, 15), (-15, 0), (-15, -15), (0, -15), (15, -15)]:
+            coord = np.array([entity.position.x + x, entity.position.y + y])
+            if not self.coordIsOccupaid(coord, entieties, 5):
+                numN = 0
+                for x1, y1 in [(15, 0), (15, 15), (0, 15), (-15, 15), (-15, 0), (-15, -15), (0, -15), (15, -15)]:
+                    coord1 = np.array([entity.position.x + x1, entity.position.y + y1])
+                    if self.coordIsOccupaid(coord1, entieties, 5):
+                        numN += 1
+                freeCoord.append(coord)
+                numNabours.append(numN)
+
+        mostNIndex = numNabours.index(max(numNabours))
+        if len(freeCoord) > 0:
+            #pos = random.randint(0, len(freeCoord)-1)
+            newCoord = freeCoord[mostNIndex];
+            self._coord[0] = newCoord[0]
+            self._coord[1] = newCoord[1]
