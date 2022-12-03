@@ -13,6 +13,7 @@ from ModelClasses.IEntity import IEntity
 from ModelClasses.IModel import IModel
 from ModelClasses.Nonbiological.Rock import Rock
 from ModelClasses.Nonbiological.Water import Water
+from ModelClasses.Nonbiological.Waters.DeepWater import DeepWater
 
 
 class Model(IModel):
@@ -21,7 +22,8 @@ class Model(IModel):
     def startGameModel(width: int, height: int):
         Positioning.setWorldSize(width, height)
 
-        Water.createEntity()
+        # DeepWater.createEntity()
+        # Water.createEntity()
         Grass.createEntity()
         Rock.createEntity()
         Man.createEntity()

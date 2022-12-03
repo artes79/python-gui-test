@@ -1,4 +1,5 @@
+from ModelClasses.IBaseEntity import IBaseEntity
 
 
-class IWater:
+class IWater(IBaseEntity):
     pass

@@ -16,7 +16,7 @@ class Rock(BaseEntity, IRock):
     @property
     def portrait(self) -> PhotoImage:
         if self._portrait is None:
-            self._portrait = self.loadPortrait("images/rock.png")
+            self._portrait = self.loadPortrait("images/deep-water.png")
         return self._portrait
 
     def __init__(self):

@@ -21,10 +21,8 @@ class Water(BaseEntity, IWater):
             self._portrait = self.loadPortrait("images/water.png")
         return self._portrait
 
-    def __init__(self, x: int, y: int):
+    def __init__(self):
         super().__init__()
-        self._position = Positioning(x, y, (10, 10), False)
-        self._position.setRandomPosition(15, Water.getAllEntities())
 
     def loadPortrait(self, path: str) -> PhotoImage:
         return super(Water, self).loadPortrait(path)
@@ -33,7 +31,7 @@ class Water(BaseEntity, IWater):
     @staticmethod
     def createEntity() -> None:
         for i in range(int(42*32/20)):
-            entity = Water(7, 7)
+            entity = Water()
             rand = random.randint(1, 7)
             if len(BaseEntity.getAllEntities()) > 0:
                 closestEntity = entity.position.closestTo(BaseEntity.getAllEntities())
