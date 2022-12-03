@@ -36,6 +36,10 @@ class IPositioning(INeighborhoodUser):
     def orientation(self) -> float:
         pass
 
+    @property
+    def halfBoundingBox(self) -> (int, int):
+        pass
+
     def moveInDirection(self, direction: float, duration: float, speed: float, maxDistance: float) -> None:
         pass
 

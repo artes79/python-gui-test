@@ -9,13 +9,14 @@ from ModelClasses.IEntity import IEntity
 #@dataclass
 class Positioning(IPositioning):
 
-    _coord: np.ndarray
+    _curentCoord: np.ndarray
+    _previousCoord: np.ndarray
     _orientation: float = 0
 
     _movable: bool
 
-    _boundingBoxWidth: int
-    _boundingBoxHeight: int
+    _boundingBoxHalfWidth: int
+    _boundingBoxHalfHeight: int
 
     _worldWidth: int = 0
     _worldHeight: int = 0
@@ -24,35 +25,47 @@ class Positioning(IPositioning):
 
     @property
     def coord(self) -> np.ndarray:
-        return self._coord
+        return self._curentCoord
 
     @property
     def x(self) -> float:
-        return self._coord[0]
+        return self._curentCoord[0]
 
     @property
     def centerX(self) -> float:
-        return self._coord[0]
+        return self._curentCoord[0]
 
     @property
     def xAsInt(self) -> int:
-        return np.round(self._coord[0])
+        return np.round(self._curentCoord[0])
+
+    @property
+    def previousX(self) -> float:
+        return self._previousCoord[0]
 
     @property
     def y(self) -> float:
-        return self._coord[1]
+        return self._curentCoord[1]
 
     @property
     def centerY(self) -> float:
-        return self._coord[1]
+        return self._curentCoord[1]
 
     @property
     def yAsInt(self) -> float:
-        return np.round(self._coord[1])
+        return np.round(self._curentCoord[1])
+
+    @property
+    def previousY(self) -> float:
+        return self._previousCoord[1]
 
     @property
     def orientation(self) -> float:
         return self._orientation
+
+    @property
+    def halfBoundingBox(self) -> (int, int):
+        return self._boundingBoxHalfWidth, self._boundingBoxHalfHeight
 
     @staticmethod
     def setWorldSize(width: int, height: int):
@@ -65,9 +78,9 @@ class Positioning(IPositioning):
     def __init__(self, x: int, y: int,
                  boundingBox: (int, int),
                  movable: bool = True):
-        self._coord = np.array([x, y], dtype=float)
-        self._boundingBoxWidth = boundingBox[0]
-        self._boundingBoxHeight = boundingBox[1]
+        self._curentCoord = np.array([x, y], dtype=float)
+        self._boundingBoxHalfWidth = boundingBox[0] / 2
+        self._boundingBoxHalfHeight = boundingBox[1] / 2
         self._movable = movable
         self._orientation = random.randint(0, 359)
 
@@ -86,14 +99,14 @@ class Positioning(IPositioning):
             distanceY = distance * np.sin(self._orientation);
             if distance >= distanceBorder:
                 distance = distanceBorder * 0.9
-            self._coord[0] += distanceX
-            self._coord[1] += distanceY
+            self._curentCoord[0] += distanceX
+            self._curentCoord[1] += distanceY
 
     def closestBorderDistance(self) -> (float, float):
-        distanceTopBorder = self._coord[1] - self._boundingBoxHeight / 2
-        distanceBottomBorder = self._worldHeight - self._coord[1] - self._boundingBoxHeight / 2
-        distanceLeftBorder = self._coord[0] - self._boundingBoxWidth / 2
-        distanceRightBorder = self._worldWidth - self._coord[0] - self._boundingBoxWidth / 2
+        distanceTopBorder = self._curentCoord[1] - self._boundingBoxHalfHeight
+        distanceBottomBorder = self._worldHeight - self._curentCoord[1] - self._boundingBoxHalfHeight
+        distanceLeftBorder = self._curentCoord[0] - self._boundingBoxHalfWidth
+        distanceRightBorder = self._worldWidth - self._curentCoord[0] - self._boundingBoxHalfWidth
 
         direction = (0 - self._orientation) % 360
         distance = distanceTopBorder
@@ -111,10 +124,7 @@ class Positioning(IPositioning):
         if direction > 180:
             direction -= 360
 
-        return (distance, direction)
-
-
-
+        return distance, direction
 
     def distanceTo(self, entityPos: IPositioning) -> float:
 
@@ -170,17 +180,23 @@ class Positioning(IPositioning):
         return closeBy
 
     def worldSizeHasChange(self) -> None:
-        self._coord[0] += Positioning._lastWidthDiff / 2
-        self._coord[1] += Positioning._lastHeightDiff / 2
+        self._curentCoord[0] += Positioning._lastWidthDiff / 2
+        self._curentCoord[1] += Positioning._lastHeightDiff / 2
 
     def setRandomPosition(self, step: int, entities: list[type[IEntity]] = []) -> None:
         findCoords = True
         while findCoords:
-            self._coord[0] = float(random.randrange(0, Positioning._worldWidth, step))
-            self._coord[1] = float(random.randrange(0, Positioning._worldHeight, step))
+            self._curentCoord[0] = float(random.randrange(0, Positioning._worldWidth - step, step) + step / 2)
+            self._curentCoord[1] = float(random.randrange(0, Positioning._worldHeight - step, step) + step / 2)
             overlap = self.closeBy(entities, 7)
             if len(overlap) == 0:
                 findCoords = False
+
+    def getOverlaps(self, entities: list[type[IEntity]]) -> None:
+        for entity in entities:
+            if entity != self:
+                distance = self.distanceBetweenBBoxes(entity)
+                print(distance)
 
     def distanceBetweenBBoxes(self, entity: IEntity):
         intersectsB = self.boundingBoxIntersect(self, entity.position)
@@ -194,6 +210,10 @@ class Positioning(IPositioning):
         print(distanceAB)
 
         return distanceAB - internalDistanceA - internalDistanceB
+
+
+    def setRandomPosition2(self, step: int, entities: list[type[IEntity]]):
+        pass
 
     def coordIsOccupaid(self, coord: np.array, entities: list[type[IEntity]], radius: float) -> bool:
         for entity in entities:
@@ -221,11 +241,8 @@ class Positioning(IPositioning):
         if len(freeCoord) > 0:
             #pos = random.randint(0, len(freeCoord)-1)
             newCoord = freeCoord[mostNIndex];
-            self._coord[0] = newCoord[0]
-            self._coord[1] = newCoord[1]
-
-
-
+            self._curentCoord[0] = newCoord[0]
+            self._curentCoord[1] = newCoord[1]
 
 
 
