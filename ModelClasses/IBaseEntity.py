@@ -20,4 +20,7 @@ class IBaseEntity(INeighborhood, IEntityShared):
     def addEntity(entity: IEntity) -> None:
         pass
 
+    @staticmethod
+    def changeRegion(entity: IEntity) -> None:
+        pass
 
