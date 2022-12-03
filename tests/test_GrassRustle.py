@@ -20,3 +20,10 @@ def test_getId():
                 assert instA.id == instB.id
             else:
                 assert instA.id != instB.id
+
+def test_generateId():
+    idA = GrassRustle.GenerateId()
+    idB = GrassRustle.GenerateId()
+    assert idA != idB
+    assert idA.startswith("Rustle")
+    assert idB.startswith("Rustle")

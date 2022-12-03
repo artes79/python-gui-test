@@ -15,4 +15,4 @@ class GrassRustle(BaseEntity, IGrassRustle):
 
     @staticmethod
     def GenerateId() -> str:
-        return "Rustel" + BaseEntity.GenerateId()
+        return "Rustle" + BaseEntity.GenerateId()
