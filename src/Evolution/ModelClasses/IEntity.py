@@ -1,8 +1,14 @@
 
 
 class IEntity:
-    pass
+
+    @property
+    def id(self) -> str:
+        pass
 
 
 class IEntities:
-    pass
+
+    @staticmethod
+    def generateId(inst) -> str:
+        pass
