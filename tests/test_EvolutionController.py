@@ -12,4 +12,3 @@ def test_construction():
     e = EvolutionController()
     assert isinstance(e, EvolutionController)
     assert isinstance(e, IEvolutionController)
-    

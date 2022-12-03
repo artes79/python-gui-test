@@ -1,0 +1,4 @@
+
+
+class IBaseEntity:
+    pass
