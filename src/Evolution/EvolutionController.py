@@ -1,4 +1,5 @@
+from Evolution.IEvolutionController import IEvolutionController
 
 
-class EvolutionController:
+class EvolutionController(IEvolutionController):
     pass

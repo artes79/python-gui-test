@@ -1,4 +1,4 @@
+from Evolution.ModelClasses.IModel import IModel
 
-
-class Model:
+class Model(IModel):
     pass
