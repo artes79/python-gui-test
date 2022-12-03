@@ -40,3 +40,5 @@ class IPositioning:
     def previousPosition(self) -> np.ndarray:
         pass
 
+    def SetRandomPosition(self) -> None:
+        pass

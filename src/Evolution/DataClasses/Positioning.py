@@ -1,6 +1,7 @@
 from Evolution.DataClasses.IPositioning import IPositioning
 from Evolution.DataClasses.WorldData import WorldData
 from dataclasses import dataclass
+from random import random
 import numpy as np
 
 
@@ -46,3 +47,8 @@ class Positioning(IPositioning):
     @property
     def previousPosition(self) -> np.ndarray:
         return self._previusPosition
+
+    def SetRandomPosition(self) -> None:
+        x = random() * Positioning._world.width
+        y = random() * Positioning._world.height
+        self.position = np.array([x, y], dtype=float)

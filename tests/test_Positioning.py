@@ -76,3 +76,20 @@ def test_previousPosition():
         inst.position = p2
         assert np.all([np.equal(inst.previousPosition, p1), [True, True]])
 
+
+def test_randomPosition():
+    for inst in instants:
+        inst.SetRandomPosition()
+        p1 = inst.position
+        inst.SetRandomPosition()
+        p2 = inst.position
+        assert not np.all([np.equal(p1, p2), [True, True]])
+        insideWorld(p1, inst.GetWorld())
+        insideWorld(p2, inst.GetWorld())
+
+
+def insideWorld(p: np.ndarray, world: WorldData):
+    assert p[0] >= 0
+    assert p[1] >= 0
+    assert p[0] < world.width
+    assert p[1] < world.height
