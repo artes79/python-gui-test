@@ -8,23 +8,23 @@ import numpy as np
 class Positioning(IPositioning):
 
     _world: WorldData = WorldData()
-    _curentCoord: np.ndarray = np.array([0, 0], dtype=float)
+    _curentPosition: np.ndarray = np.array([0, 0], dtype=float)
 
     @property
     def x(self) -> float:
-        return self._curentCoord[0]
+        return self._curentPosition[0]
 
     @property
     def xRound(self) -> float:
-        return np.round(self._curentCoord[0])
+        return np.round(self._curentPosition[0])
 
     @property
     def y(self) -> float:
-        return self._curentCoord[1]
+        return self._curentPosition[1]
 
     @property
     def yRound(self) -> float:
-        return np.round(self._curentCoord[1])
+        return np.round(self._curentPosition[1])
 
     @staticmethod
     def SetWorld(world: WorldData) -> None:
