@@ -117,7 +117,36 @@ class Positioning(IPositioning):
 
 
     def distanceTo(self, entityPos: IPositioning) -> float:
-        return np.linalg.norm(self._coord - entityPos.coord)
+
+        posA = self.boundingBoxIntersect(self, entityPos)
+        posB = self.boundingBoxIntersect(entityPos, self)
+        return np.linalg.norm(posA - posB)
+
+    def boundingBoxIntersect(self, entityPosA: IPositioning, entityPosB: IPositioning) -> np.ndarray:
+        denominator = (entityPosA.coord[0] - entityPosB.x)
+        if denominator < 0.001:
+            denominator = 0.001
+        sloap = (entityPosA.coord[1] - entityPosB.y) / denominator
+        halfWidth, halfHeight = entityPosB.halfBoundingBox
+
+        x = 0
+        y = 0
+
+        hitYAxis = sloap * halfWidth
+        if -halfHeight <= hitYAxis and hitYAxis <= halfHeight:
+            y = entityPosB.y + hitYAxis
+            if entityPosA.coord[0] > entityPosB.x:
+                x = entityPosB.x + halfWidth
+            else:
+                x = entityPosB.x - halfWidth
+        else:
+            x = entityPosB.x + halfHeight / sloap
+            if entityPosA.coord[1] > entityPosB.y:
+                y = entityPosB.y - halfHeight
+            else:
+                y = entityPosB.y + halfHeight
+
+        return np.array([x, y], dtype=float)
 
     def distanceBetween(self, coord: np.ndarray, entityPos: IPositioning) -> float:
         return np.linalg.norm(coord - entityPos.coord)
@@ -152,6 +181,19 @@ class Positioning(IPositioning):
             overlap = self.closeBy(entities, 7)
             if len(overlap) == 0:
                 findCoords = False
+
+    def distanceBetweenBBoxes(self, entity: IEntity):
+        intersectsB = self.boundingBoxIntersect(self, entity.position)
+        intersectsA = self.boundingBoxIntersect(entity.position, self)
+
+        distanceAB = np.linalg.norm(self.coord - entity.position.coord)
+
+        internalDistanceB = np.linalg.norm(intersectsB - entity.position.coord)
+        internalDistanceA = np.linalg.norm(intersectsA - self.coord)
+
+        print(distanceAB)
+
+        return distanceAB - internalDistanceA - internalDistanceB
 
     def coordIsOccupaid(self, coord: np.array, entities: list[type[IEntity]], radius: float) -> bool:
         for entity in entities:
