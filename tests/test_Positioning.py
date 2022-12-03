@@ -29,7 +29,6 @@ def test_returnXRound():
         assert vRound >= 0
 
 
-
 def test_returnY():
     for inst in instants:
         assert isinstance(inst.y, float)

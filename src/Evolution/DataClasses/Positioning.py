@@ -17,7 +17,8 @@ class Positioning(IPositioning):
         return self._curentPosition[0]
 
     @property
-    def xRound(self) -> float:        return np.round(self._curentPosition[0])
+    def xRound(self) -> float:
+        return np.round(self._curentPosition[0])
 
     @property
     def y(self) -> float:
