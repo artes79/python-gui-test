@@ -1,4 +1,5 @@
 from Evolution.DataClasses.IPositioning import IPositioning
+from Evolution.DataClasses.WorldData import WorldData
 from dataclasses import dataclass
 import numpy as np
 
@@ -6,6 +7,7 @@ import numpy as np
 @dataclass
 class Positioning(IPositioning):
 
+    _world: WorldData = WorldData()
     _curentCoord: np.ndarray = np.array([0, 0], dtype=float)
 
     @property
@@ -23,3 +25,11 @@ class Positioning(IPositioning):
     @property
     def yRound(self) -> float:
         return np.round(self._curentCoord[1])
+
+    @staticmethod
+    def SetWorld(world: WorldData) -> None:
+        Positioning._world = world
+
+    @staticmethod
+    def GetWorld() -> WorldData:
+        return Positioning._world

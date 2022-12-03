@@ -1,3 +1,4 @@
+from Evolution.DataClasses.IWorldData import IWorldData
 
 
 class IPositioning:
@@ -16,4 +17,12 @@ class IPositioning:
 
     @property
     def yRound(self) -> float:
+        pass
+
+    @staticmethod
+    def SetWorld(world: IWorldData) -> None:
+        pass
+
+    @staticmethod
+    def GetWorld() -> IWorldData:
         pass

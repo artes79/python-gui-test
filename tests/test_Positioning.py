@@ -1,6 +1,7 @@
+import numpy as np
 from Evolution.DataClasses.IPositioning import IPositioning
 from Evolution.DataClasses.Positioning import Positioning
-
+from Evolution.DataClasses.WorldData import WorldData
 
 instants = [Positioning(), Positioning(), Positioning()]
 
@@ -39,3 +40,14 @@ def test_returnYRound():
         vRound = inst.yRound
         assert (v - 0.5) <= vRound <= (v + 0.5)
         assert vRound == int(v)
+
+
+def test_world():
+    w = WorldData()
+    size = np.array([360, 480], dtype=float)
+    w.size = size
+    Positioning.SetWorld(w)
+    assert Positioning.GetWorld() == w
+    assert Positioning.GetWorld().width == w.width
+    assert Positioning.GetWorld().height == w.height
+
