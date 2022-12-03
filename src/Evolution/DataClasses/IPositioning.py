@@ -1,3 +1,4 @@
+import numpy as np
 from Evolution.DataClasses.IWorldData import IWorldData
 
 
@@ -26,3 +27,16 @@ class IPositioning:
     @staticmethod
     def GetWorld() -> IWorldData:
         pass
+
+    @property
+    def position(self) -> np.ndarray:
+        pass
+
+    @position.setter
+    def position(self, position: np.ndarray) -> None:
+        pass
+
+    @property
+    def previousPosition(self) -> np.ndarray:
+        pass
+

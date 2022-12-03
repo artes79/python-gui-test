@@ -58,3 +58,21 @@ def test_world():
     assert Positioning.GetWorld().width == w.width
     assert Positioning.GetWorld().height == w.height
 
+
+def test_position():
+    for inst in instants:
+        p = np.array([360, 240], dtype=float)
+        inst.position = p
+        assert p[0] == inst.x
+        assert p[1] == inst.y
+        assert np.all([np.equal(p, inst.position), [True, True]])
+
+
+def test_previousPosition():
+    for inst in instants:
+        p1 = np.array([256,512], dtype=float)
+        p2 = np.array([125,420], dtype=float)
+        inst.position = p1
+        inst.position = p2
+        assert np.all([np.equal(inst.previousPosition, p1), [True, True]])
+

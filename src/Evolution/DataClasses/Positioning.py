@@ -9,14 +9,14 @@ class Positioning(IPositioning):
 
     _world: WorldData = WorldData()
     _curentPosition: np.ndarray = np.array([0, 0], dtype=float)
+    _previusPosition: np.ndarray = np.array([0, 0], dtype=float)
 
     @property
     def x(self) -> float:
         return self._curentPosition[0]
 
     @property
-    def xRound(self) -> float:
-        return np.round(self._curentPosition[0])
+    def xRound(self) -> float:        return np.round(self._curentPosition[0])
 
     @property
     def y(self) -> float:
@@ -33,3 +33,16 @@ class Positioning(IPositioning):
     @staticmethod
     def GetWorld() -> WorldData:
         return Positioning._world
+
+    @property
+    def position(self) -> np.ndarray:
+        return self._curentPosition
+
+    @position.setter
+    def position(self, position: np.ndarray) -> None:
+        self._previusPosition = self._curentPosition
+        self._curentPosition = position
+
+    @property
+    def previousPosition(self) -> np.ndarray:
+        return self._previusPosition
