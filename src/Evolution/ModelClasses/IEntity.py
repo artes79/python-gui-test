@@ -10,5 +10,5 @@ class IEntity:
 class IEntities:
 
     @staticmethod
-    def generateId(inst) -> str:
+    def generateId() -> str:
         pass
