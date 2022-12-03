@@ -1,4 +1,5 @@
+from Evolution.ModelClasses.IEntity import IEntities
 
 
-class IBaseEntity:
+class IBaseEntity(IEntities):
     pass
