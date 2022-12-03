@@ -15,6 +15,8 @@ def test_returnX():
         assert isinstance(inst.x, float)
         v = inst.x
         assert v == inst.x
+        assert v >= 0
+        assert v < Positioning.GetWorld().width
 
 
 def test_returnXRound():
@@ -24,6 +26,8 @@ def test_returnXRound():
         vRound = inst.xRound
         assert (v - 0.5) <= vRound <= (v + 0.5)
         assert vRound == int(vRound)
+        assert vRound >= 0
+
 
 
 def test_returnY():
@@ -31,6 +35,8 @@ def test_returnY():
         assert isinstance(inst.y, float)
         v = inst.y
         assert v == inst.y
+        assert v >= 0
+        assert v < Positioning.GetWorld().height
 
 
 def test_returnYRound():
@@ -40,6 +46,7 @@ def test_returnYRound():
         vRound = inst.yRound
         assert (v - 0.5) <= vRound <= (v + 0.5)
         assert vRound == int(v)
+        assert vRound >= 0
 
 
 def test_world():
