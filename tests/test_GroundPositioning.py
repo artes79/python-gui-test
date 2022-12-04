@@ -21,7 +21,7 @@ def test_set_random_position():
 def insideWorld(p: np.ndarray, physical: PhysicalData, world: WorldData):
     assert p[0] >= physical.extent[0]
     assert p[1] >= physical.extent[1]
-    assert p[0] < world.width - physical.extent[0]
-    assert p[1] < world.height - physical.extent[1]
+    assert p[0] < world.width - physical.extent[0] * 2
+    assert p[1] < world.height - physical.extent[1] * 2
     assert p[0] == np.round((p[0] - physical.extent[0]) / (physical.extent[0] * 2)) * (physical.extent[0] * 2) + physical.extent[0]
     assert p[1] == np.round((p[1] - physical.extent[1]) / (physical.extent[1] * 2)) * (physical.extent[1] * 2) + physical.extent[1]
