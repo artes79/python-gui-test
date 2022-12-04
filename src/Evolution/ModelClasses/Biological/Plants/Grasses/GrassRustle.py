@@ -38,6 +38,7 @@ class GrassRustle(BaseEntity, IGrassRustle):
     @staticmethod
     def GenerateId() -> str:
         return "Rustle" + BaseEntity.GenerateId()
+
     @staticmethod
     def GetTypePortrait() -> PhotoImage:
         if GrassRustle._typeProtrait == None:
