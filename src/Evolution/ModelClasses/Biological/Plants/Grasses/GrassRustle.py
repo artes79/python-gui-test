@@ -7,8 +7,11 @@ from Evolution.DataClasses.GroundPositioning import GroundPositioning
 
 class GrassRustle(BaseEntity, IGrassRustle):
 
+    _typeProtrait = BaseEntity.LoadPortrait("images/grass.png")
+
     _id: str
     _position: IPositioning
+    _portrait: PhotoImage
 
     @property
     def id(self) -> str:
@@ -17,6 +20,12 @@ class GrassRustle(BaseEntity, IGrassRustle):
     @property
     def position(self) -> IPositioning:
         return self._position
+
+    @property
+    def portrait(self) -> PhotoImage:
+        if self._portrait == null:
+            return GrassRustle._typeProtrait
+        return self._portrait
 
     def __init__(self):
         self._id = GrassRustle.GenerateId()
