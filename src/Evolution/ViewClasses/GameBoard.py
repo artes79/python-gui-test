@@ -5,7 +5,8 @@ from Evolution.ModelClasses.IEntity import IEntity
 
 class GameBoard(IGameBoard):
 
-    _playLayer: gui.Canvas
+    _playLayer: gui.Canvas = None
+    _running = True
 
     @staticmethod
     def InitBoard(playLayer: gui.Canvas) -> None:
@@ -13,16 +14,18 @@ class GameBoard(IGameBoard):
 
     @staticmethod
     def Run(entities: list[type[IEntity]]) -> None:
-        for entity in entities:
-            GameBoard.AddEntity(entity)
+        if GameBoard._running:
+            for entity in entities:
+                GameBoard.AddEntity(entity)
+            GameBoard._running = False
 
     @staticmethod
     def AddEntity(entity: IEntity) -> None:
         GameBoard._playLayer.create_image(entity.position.xRound,
                                           entity.position.yRound,
+                                          image=entity.portrait,
                                           anchor=gui.CENTER,
-                                          image=entity,
-                                          tag=(entity.id))
+                                          tag=entity.id)
 
     @staticmethod
     def MoveEntity(entity: IEntity) -> None:
