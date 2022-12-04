@@ -1,14 +1,16 @@
 from Evolution.ViewClasses.IView import IView
 from Evolution.ModelClasses.IEntity import IEntity
-import tkInter as gui
+import tkinter as gui
 
 
 class View(IView):
 
     _rootGUI: gui.Tk
+    _guiRunning: bool
 
     _viewWidth: int
     _viewHeight: int
+
 
     @staticmethod
     def StartGameView(width: int, height: int) -> None:
@@ -20,13 +22,18 @@ class View(IView):
     def InitGUI() -> None:
         View._rootGUI = gui.Tk()
         View._rootGUI.title("Evolution")
-        View._rootGUI.protocol("VM_DELETE_WINDOW", View.OnClosing)
+        View._rootGUI.protocol("WM_DELETE_WINDOW", lambda: View.onClosing())
         View._rootGUI.minsize(View._viewWidth, View._viewHeight)
+        View._guiRunning = True
 
     @staticmethod
     def RunGUI(entities: list[type[IEntity]]):
-        pass
+        View._rootGUI.update()
 
     @staticmethod
-    def OnClosing() -> None:
-        pass
+    def IsRunning() -> bool:
+        return View._guiRunning
+
+    @staticmethod
+    def onClosing() -> None:
+        View._guiRunning = False

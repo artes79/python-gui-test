@@ -16,5 +16,9 @@ class IView:
         pass
 
     @staticmethod
+    def IsRunning() -> bool:
+        pass
+
+    @staticmethod
     def OnClosing() -> None:
         pass
