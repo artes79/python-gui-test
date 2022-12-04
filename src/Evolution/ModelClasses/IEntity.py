@@ -15,6 +15,10 @@ class IEntity:
     def portrait(self) -> PhotoImage:
         pass
 
+    @staticmethod
+    def GetTypePortrait() -> PhotoImage:
+        pass
+    
 
 class IEntities:
 
