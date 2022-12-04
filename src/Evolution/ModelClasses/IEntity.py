@@ -25,3 +25,11 @@ class IEntities:
     @staticmethod
     def LoadPortrait(path: str) -> PhotoImage:
         pass
+
+    @staticmethod
+    def GetEntities() -> list[type[IEntity]]:
+        pass
+
+    @staticmethod
+    def AddEntity(entity: IEntity) -> None:
+        pass
