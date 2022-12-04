@@ -1,7 +1,7 @@
-from Evolution.ModelClasses.IBaseEntity import IBaseEntity
 from PIL import Image
 from PIL.ImageTk import PhotoImage
 
+from Evolution.ModelClasses.IBaseEntity import IBaseEntity
 from Evolution.ModelClasses.IEntity import IEntity
 
 class BaseEntity(IBaseEntity):
