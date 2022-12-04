@@ -1,3 +1,4 @@
+from Evolution.DataClasses.GroundPositioning import GroundPositioning
 from Evolution.ModelClasses.BaseEntity import BaseEntity
 from Evolution.ModelClasses.Biological.Plants.Grasses.GrassRustle import GrassRustle
 from Evolution.ModelClasses.Biological.Plants.Grasses.IGrassRustle import IGrassRustle
@@ -21,9 +22,20 @@ def test_getId():
             else:
                 assert instA.id != instB.id
 
+
 def test_generateId():
     idA = GrassRustle.GenerateId()
     idB = GrassRustle.GenerateId()
     assert idA != idB
     assert idA.startswith("Rustle")
     assert idB.startswith("Rustle")
+
+
+def test_position():
+    for inst in instants:
+        assert isinstance(inst.position, GroundPositioning)
+        p = inst.position
+        assert p == inst.position
+        assert inst.position.physical.extent[0] == 7.5
+        assert inst.position.physical.extent[1] == 7.5
+
