@@ -17,6 +17,7 @@ def test_set_random_position():
         insideWorld(p1, inst.physical, inst.GetWorld())
         insideWorld(p2, inst.physical, inst.GetWorld())
 
+
 def insideWorld(p: np.ndarray, physical: PhysicalData, world: WorldData):
     assert p[0] >= physical.extent[0]
     assert p[1] >= physical.extent[1]
