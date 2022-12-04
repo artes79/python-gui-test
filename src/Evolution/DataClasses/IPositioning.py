@@ -1,5 +1,6 @@
 import numpy as np
 from Evolution.DataClasses.IWorldData import IWorldData
+from Evolution.DataClasses.IPhysicalData import IPhysicalData
 
 
 class IPositioning:
@@ -26,6 +27,10 @@ class IPositioning:
 
     @staticmethod
     def GetWorld() -> IWorldData:
+        pass
+
+    @property
+    def physical(self) -> IPhysicalData:
         pass
 
     @property

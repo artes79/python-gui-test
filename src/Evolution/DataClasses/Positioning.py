@@ -1,5 +1,6 @@
 from Evolution.DataClasses.IPositioning import IPositioning
 from Evolution.DataClasses.WorldData import WorldData
+from Evolution.DataClasses.PhysicalData import PhysicalData
 from dataclasses import dataclass
 from random import random
 import numpy as np
@@ -9,6 +10,7 @@ import numpy as np
 class Positioning(IPositioning):
 
     _world: WorldData = WorldData()
+    _physical: PhysicalData = PhysicalData()
     _curentPosition: np.ndarray = np.array([0, 0], dtype=float)
     _previusPosition: np.ndarray = np.array([0, 0], dtype=float)
 
@@ -35,6 +37,10 @@ class Positioning(IPositioning):
     @staticmethod
     def GetWorld() -> WorldData:
         return Positioning._world
+
+    @property
+    def physical(self) -> PhysicalData:
+        return self._physical
 
     @property
     def position(self) -> np.ndarray:

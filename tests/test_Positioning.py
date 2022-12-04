@@ -1,5 +1,6 @@
 import numpy as np
 from Evolution.DataClasses.IPositioning import IPositioning
+from Evolution.DataClasses.PhysicalData import PhysicalData
 from Evolution.DataClasses.Positioning import Positioning
 from Evolution.DataClasses.WorldData import WorldData
 
@@ -56,6 +57,16 @@ def test_world():
     assert Positioning.GetWorld() == w
     assert Positioning.GetWorld().width == w.width
     assert Positioning.GetWorld().height == w.height
+
+
+def test_physical():
+    for inst in instants:
+        p = inst.physical
+        assert isinstance(p, PhysicalData)
+        assert p == inst.physical
+        e = np.array([2.7, 4.5], dtype=float)
+        inst.physical.extent = e
+        assert np.all([np.equal(e, inst.physical.extent), [True, True]])
 
 
 def test_position():
