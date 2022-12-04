@@ -7,7 +7,7 @@ from Evolution.ViewClasses.View import View
 
 class EvolutionController(IEvolutionController):
 
-    _gameboardWidth: int = 640
+    _gameboardWidth: int = 660
     _gameboardHeight: int = 480
 
     _timestampLastFrame: float
