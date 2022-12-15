@@ -47,7 +47,11 @@ class GrassRustle(BaseEntity, IGrassRustle):
 
     @staticmethod
     def CreateTypeEntities() -> None:
-        for _ in range(int(42*32/2)):
+        for _ in range(5):
             inst = GrassRustle()
-            inst.position.SetRandomPosition()
+            inst.position.SetRandomPosition(inst)
+            BaseEntity.AddEntity(inst)
+        for _ in range(100): #int(42*32/2)):
+            inst = GrassRustle()
+            inst.position.SetRandomNabourPosition(inst)
             BaseEntity.AddEntity(inst)
