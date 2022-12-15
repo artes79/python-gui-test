@@ -41,3 +41,15 @@ class IEntities:
     @staticmethod
     def AddEntity(entity: IEntity) -> None:
         pass
+
+    @staticmethod
+    def AddEntityToGround(entity: IEntity) -> None:
+        pass
+
+    @staticmethod
+    def GetEntityFromGroundSquare(x: int, y: int) -> IEntity:
+        pass
+
+    @staticmethod
+    def IsGroundSquareOcupide(x: int, y: int) -> bool:
+        pass
