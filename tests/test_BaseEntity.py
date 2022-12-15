@@ -2,7 +2,7 @@ from Evolution.ModelClasses.BaseEntity import BaseEntity
 from Evolution.ModelClasses.Biological.Plants.Grasses.GrassRustle import GrassRustle
 from Evolution.ModelClasses.IBaseEntity import IBaseEntity
 from Evolution.ModelClasses.IEntity import IEntity
-
+import numpy as np
 
 # ModelClasses / BaseEntity
 
@@ -35,3 +35,33 @@ def test_addEntity():
 def test_getEntitiesContains():
     for entity in BaseEntity.GetEntities():
         assert isinstance(entity, IEntity)
+
+
+def test_addEntityToGroundTabel():
+    rustle = GrassRustle()
+    rustle.position.position = np.array([300, 300], dtype=float)
+    BaseEntity.AddEntityToGround(rustle)
+    assert BaseEntity.GetEntityFromGroundSquare(300, 300) == rustle
+
+
+def test_isSquareOcupide():
+    rustle = GrassRustle()
+    rustle.position.position = np.array([300, 300], dtype=float)
+    BaseEntity.AddEntityToGround(rustle)
+    assert BaseEntity.IsGroundSquareOcupide(300, 300) is True
+    assert BaseEntity.IsGroundSquareOcupide(290, 300) is False
+    assert BaseEntity.IsGroundSquareOcupide(290, 290) is False
+    assert BaseEntity.IsGroundSquareOcupide(300, 290) is False
+    assert BaseEntity.IsGroundSquareOcupide(310, 290) is False
+    assert BaseEntity.IsGroundSquareOcupide(310, 300) is False
+    assert BaseEntity.IsGroundSquareOcupide(310, 310) is False
+    assert BaseEntity.IsGroundSquareOcupide(300, 310) is False
+    assert BaseEntity.IsGroundSquareOcupide(290, 310) is False
+    rustle2 = GrassRustle()
+    rustle2.position.position = np.array([654, 474], dtype=float)
+    BaseEntity.AddEntityToGround(rustle2)
+    assert BaseEntity.IsGroundSquareOcupide(654, 474) is True
+    rustle3 = GrassRustle()
+    rustle3.position.position = np.array([10, 10], dtype=float)
+    BaseEntity.AddEntityToGround(rustle3)
+    assert BaseEntity.IsGroundSquareOcupide(10, 10) is True
